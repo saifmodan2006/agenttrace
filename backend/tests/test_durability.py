@@ -14,7 +14,7 @@ def test_database_container_restart_persists_graph_and_stops_scheduling(memory, 
     from app.workers.runner import Worker
 
     Worker(memory).tick(run["id"])
-    assert memory.store.client.connection.config_get("appendonly")["appendonly"] == "yes"
+    assert memory.store.client.connection.config_get("appendonly")["appendonly"] == "no"
     assert memory.store.client.connection.config_get("dir")["dir"] == "/data"
     before = memory.steps(run["id"])
     checkpoint = memory.checkpoint(run["id"])

@@ -62,7 +62,7 @@ Linux: `cp .env.example .env`, then the same Docker command.
 - API / OpenAPI: http://localhost:8000/docs
 - Health: http://localhost:8000/api/health
 
-These are local defaults, not public deployment URLs. All ports bind to loopback. FalkorDB uses a pinned, tested image digest; persistence uses named volumes. `docker compose stop` preserves them. `docker compose --profile workers up -d worker` adds an independent worker, useful for demonstrating concurrent claims.
+These are local defaults, not public deployment URLs. All ports bind to loopback. FalkorDB uses a pinned, tested image digest; RDB snapshots and synchronous checkpoint saves persist to a named volume. AOF is disabled after a reproduced graph-effect replay crash in this image. Abrupt database/host failure can lose writes after the last completed snapshot; see [durability details](docs/recovery-design.md). `docker compose stop` preserves volumes. `docker compose --profile workers up -d worker` adds an independent worker, useful for demonstrating concurrent claims.
 
 ## Native Windows development
 
@@ -131,7 +131,7 @@ npx playwright install chromium
 npm test
 ```
 
-Browser tests expect the native or Docker API/frontend to be running. The optional database durability test is enabled with `$env:RUN_DOCKER_RESTART_TEST='1'` before pytest and restarts the **agenttrace-db** container; use it only against the local demo. Test graphs are isolated and cleaned up. See [validation results](docs/validation.md) for exact executed results and limitations.
+Browser tests expect the native or Docker API/frontend to be running. The optional database durability test is enabled with `$env:RUN_DOCKER_RESTART_TEST='1'` before pytest and restarts and replaces the **agenttrace-db** container; use it only against the local demo. Test graphs are isolated and cleaned up. See [validation results](docs/validation.md) for exact executed results and limitations.
 
 Query timing: `$env:PYTHONPATH='backend'; .\.venv\Scripts\python.exe scripts/benchmark.py`. Actual local timings and EXPLAIN plans are in [query-timings.json](docs/query-timings.json); this tiny dataset is not a production benchmark.
 

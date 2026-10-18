@@ -35,7 +35,7 @@ cd backend
 ..\.venv\Scripts\python.exe -m pytest tests/test_restart.py -v -s
 ```
 
-The test creates an isolated tenant, kills a real worker process after claim, restarts it, and asserts that completed work is not replayed. Its test graph is cleaned up afterward. For a judge-visible manual run, pause a run in the UI, disable the embedded worker (`EMBEDDED_WORKER=0` and restart backend), resume the run, then run:
+The test creates an isolated tenant, kills a real worker process after claim, restarts it, and asserts that completed work is not replayed. Its test graph is cleaned up afterward. For a judge-visible manual run, pause a run in the UI, stop the optional container worker (`docker compose stop worker`), disable the embedded worker (`EMBEDDED_WORKER=0` and restart backend), resume the run, then run the following from the native backend environment:
 
 ```powershell
 ..\.venv\Scripts\python.exe -u -m app.workers.runner --tenant demo --run RUN_UUID --owner crash-demo --claim-only
@@ -48,3 +48,5 @@ After it prints the claim, terminate that process. Wait longer than LEASE_MS, cl
 ```
 
 The dashboard shows the interrupted attempt and reconciliation event. Finish recording with the graph evidence and verified results. A paused run lets in-flight tools finish but stops new claims.
+
+For the all-Docker setup, set `EMBEDDED_WORKER=0` in `.env`, run `docker compose up -d --force-recreate backend`, and use `docker compose exec backend python -u -m app.workers.runner --tenant demo --run RUN_UUID --owner crash-demo --claim-only` for the first CLI command. Terminate that CLI process, then use the same `docker compose exec backend python -m app.workers.runner` prefix with `--owner resumed-demo` and without `--claim-only`. This keeps artifacts in the shared container workspace volume. Restore `EMBEDDED_WORKER=1` and recreate backend after the manual demonstration.

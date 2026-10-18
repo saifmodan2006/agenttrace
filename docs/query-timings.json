@@ -9,19 +9,39 @@
   },
   "queries": {
     "run_lookup": {
-      "median_ms": 5.846,
-      "p95_ms": 7.08,
+      "median_ms": 3.232,
+      "p95_ms": 9.448,
       "explain": "Results\n    Project\n        Node By Index Scan | (r:AgentRun)"
     },
     "step_lookup": {
-      "median_ms": 6.787,
-      "p95_ms": 8.183,
+      "median_ms": 3.013,
+      "p95_ms": 4.453,
       "explain": "Results\n    Project\n        Node By Index Scan | (s:Step)"
     },
     "dependency_traversal": {
-      "median_ms": 8.142,
-      "p95_ms": 16.65,
+      "median_ms": 8.778,
+      "p95_ms": 13.702,
       "explain": "Results\n    Project\n        Conditional Variable Length Traverse | (@anon_0)-[@anon_1:DEPENDS_ON*1..30]->(s)\n            Node By Index Scan | (@anon_0:Step)"
+    },
+    "ready_steps": {
+      "median_ms": 5.466,
+      "p95_ms": 12.054,
+      "explain": "Results\n    Limit\n        Sort\n            Project\n                Filter\n                    Aggregate\n                        Optional Conditional Traverse | (s)->(d:Step)\n                            Conditional Traverse | (r)->(s:Step)\n                                Node By Index Scan | (r:AgentRun)"
+    },
+    "attempt_history": {
+      "median_ms": 2.994,
+      "p95_ms": 3.684,
+      "explain": "Results\n    Sort\n        Project\n            Conditional Traverse | (@anon_0)->(a:Attempt)\n                Node By Index Scan | (@anon_0:Step)"
+    },
+    "recent_events": {
+      "median_ms": 5.153,
+      "p95_ms": 7.691,
+      "explain": "Results\n    Limit\n        Sort\n            Project\n                Node By Index Scan | (e:Event)"
+    },
+    "latest_checkpoint": {
+      "median_ms": 3.882,
+      "p95_ms": 4.69,
+      "explain": "Results\n    Limit\n        Sort\n            Project\n                Conditional Traverse | (@anon_0)->(c:Checkpoint)\n                    Node By Index Scan | (@anon_0:AgentRun)"
     }
   }
 }

@@ -637,6 +637,9 @@ class AgentMemoryManager:
             },
         )
         self.record_execution_event(run_id, "checkpoint_saved", "Execution checkpoint saved")
+        # Flush the graph snapshot before acknowledging a durable checkpoint.
+        # Compose uses RDB persistence after a reproduced upstream AOF replay crash.
+        self.store.client.connection.save()
         return properties(rows[0][0])
 
     def get_resume_context(self, run_id):
