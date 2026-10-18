@@ -2,6 +2,10 @@
 
 **AI Agents That Remember, Recover, and Explain Every Action.**
 
+Graph-native execution memory and coordination for autonomous AI agents. Powered by FalkorDB, with persistent task tracking, failure recovery, multi-agent orchestration, and explainable decisions.
+
+[Source repository](https://github.com/saifmodan2006/agenttrace)
+
 Graph-native execution memory for the WeMakeDevs × FalkorDB Graph Hacks 2026 hackathon. Primary track: **Agent Memory and Coordination**. Secondary track: **Agents That Act on Connected Data**.
 
 ![Actual AgentTrace dashboard](docs/screenshots/overview.png)
@@ -151,6 +155,6 @@ Stop backend/worker before making a consistent paired graph/workspace backup. As
 
 Recovery supports the single approved calculator defect. Tool isolation is not a container/OS sandbox for hostile arbitrary code. Live model behavior, scale/load testing, general semantic retrieval, automatic stale-result revalidation, and a backup/restore drill remain unverified or outside current scope. Graph exports and traversals are bounded; memory search is transparent filtering/ranking rather than model-generated answers. Not every optional schema field in the original product specification is populated.
 
-The public repository, actual demo video, and participant technical review are still required. No public deployment or video URL is invented. See [submission draft](docs/submission.md), [video script](docs/video-script.md), and [AI disclosure](AI_USAGE.md). Screenshots in `docs/screenshots/` are captured from the running application when present.
+The source repository is [saifmodan2006/agenttrace](https://github.com/saifmodan2006/agenttrace). The actual demo video and participant technical review are still required. No public deployment or video URL is invented. See [submission draft](docs/submission.md), [video script](docs/video-script.md), and [AI disclosure](AI_USAGE.md). Screenshots in `docs/screenshots/` are captured from the running application when present.
 
 Built with AI assistance; meaningful participant contribution, verification, and technical understanding must be completed and recorded before submission. MIT licensed.

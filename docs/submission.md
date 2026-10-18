@@ -21,7 +21,7 @@ AgentTrace is a local graph-native agent execution system. A goal becomes a vali
 
 ## Links
 
-- Repository URL: **not published yet**.
+- Repository URL: [saifmodan2006/agenttrace](https://github.com/saifmodan2006/agenttrace).
 - Live deployment: **not deployed publicly**; complete local setup is in README.
 - Demo video: **not recorded yet**; script prepared in video-script.md.
 
@@ -30,7 +30,7 @@ AgentTrace is a local graph-native agent execution system. A goal becomes a vali
 - [x] Source implementation and local setup instructions.
 - [x] Graph schema, key Cypher queries, architecture, demo instructions.
 - [x] AI assistance disclosure.
-- [ ] Public repository URL supplied by participant.
+- [x] Repository URL supplied by participant: https://github.com/saifmodan2006/agenttrace.
 - [ ] Actual video recorded and URL supplied.
 - [ ] Participant reviews code, validates behavior, understands and explains graph queries and design choices.
 - [ ] Participant confirms registration, team eligibility, development-window compliance, and submits before the official deadline.
