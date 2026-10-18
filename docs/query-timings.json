@@ -1,0 +1,27 @@
+{
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "database_image": "falkordb/falkordb@sha256:b0bdcac2cbaff989e77cb0610439b7a9289e86de033ccbbd4368b66fb680ae7a",
+    "steps": 5,
+    "iterations": 50,
+    "measurement": "Client wall-clock including round trip; small synthetic graph, not a scale benchmark"
+  },
+  "queries": {
+    "run_lookup": {
+      "median_ms": 5.846,
+      "p95_ms": 7.08,
+      "explain": "Results\n    Project\n        Node By Index Scan | (r:AgentRun)"
+    },
+    "step_lookup": {
+      "median_ms": 6.787,
+      "p95_ms": 8.183,
+      "explain": "Results\n    Project\n        Node By Index Scan | (s:Step)"
+    },
+    "dependency_traversal": {
+      "median_ms": 8.142,
+      "p95_ms": 16.65,
+      "explain": "Results\n    Project\n        Conditional Variable Length Traverse | (@anon_0)-[@anon_1:DEPENDS_ON*1..30]->(s)\n            Node By Index Scan | (@anon_0:Step)"
+    }
+  }
+}

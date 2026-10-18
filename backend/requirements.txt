@@ -1,0 +1,8 @@
+fastapi==0.119.0
+uvicorn==0.37.0
+pydantic==2.12.0
+pydantic-settings==2.11.0
+falkordb==1.2.0
+httpx==0.28.1
+pytest==8.4.2
+ruff==0.14.0
